@@ -123,6 +123,10 @@ function ChatArea(props) {
     setSocket(props.socket);
   }, [props.setSocket]);
 
+  const makeCall = () => {
+    props.makeCall(chatUserName);
+  };
+
   return (
     <div className="h-full w-full px-2 py-4 pt-1 flex flex-col">
       <div className="flex w-full h-fit px-5 pl-7 max-sm:p-3 max-sm:pl-5 py-4 items-center gap-6 max-sm:gap-2">
@@ -142,9 +146,17 @@ function ChatArea(props) {
           <span className="text-xs text-gray-500">Online</span>
         </div>
         <div className="flex w-fit h-fit justify-end text-[#9747ff] sm:gap-6 gap-2">
-          <span className="material-symbols-outlined ">call</span>
-          <span className="material-symbols-outlined ">videocam</span>
-          <span className="material-symbols-outlined ">more_vert</span>
+          <span className="material-symbols-outlined cursor-pointer ">
+            call
+          </span>
+          <span
+            className="material-symbols-outlined cursor-pointer "
+            onClick={makeCall}>
+            videocam
+          </span>
+          <span className="material-symbols-outlined cursor-pointer ">
+            more_vert
+          </span>
         </div>
       </div>
       <hr className="border-solid mx-3" />

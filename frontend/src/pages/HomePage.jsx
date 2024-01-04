@@ -3,14 +3,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import io from "socket.io-client";
 
+import consts from "../const";
+
 import Loading from "./Loading";
 import Home from "../components/Home";
-import consts from "../const";
+import MakeCall from "../components/calls/MakeCall";
 
 function HomePages() {
   const [Page, setPage] = useState(<Loading />);
   const [socket, setSocket] = useState(null);
   const [userName, setUserName] = useState();
+
+  const makeCall = (chatUser) => {
+    setPage(
+      <MakeCall userName={userName} chatUser={chatUser} socket={socket} />
+    );
+  };
 
   const validateSession = async () => {
     try {
@@ -56,7 +64,7 @@ function HomePages() {
 
   useEffect(() => {
     if (userName && socket) {
-      setPage(<Home userName={userName} socket={socket} />);
+      setPage(<Home userName={userName} socket={socket} makeCall={makeCall} />);
     }
   }, [userName, socket]);
   return Page;

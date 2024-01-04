@@ -4,8 +4,8 @@ import SignInUp from "./pages/SignInUp";
 import Open from "./pages/Open";
 import HomePages from "./pages/HomePage";
 
-import MakeCall from "./pages/MakeCall";
-import ReceiveCall from "./pages/ReceiveCall";
+import MakeCall from "../src/components/calls/MakeCall";
+import ReceiveCall from "../src/components/calls/ReceiveCall";
 
 function App() {
   return (

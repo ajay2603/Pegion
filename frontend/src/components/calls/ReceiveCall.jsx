@@ -1,6 +1,6 @@
 import React from "react";
 
-import consts from "../const";
+import consts from "../../const"
 
 function ReceiveCall() {
   return (
