@@ -8,6 +8,7 @@ import consts from "../const";
 import Loading from "./Loading";
 import Home from "../components/Home";
 import MakeCall from "../components/calls/MakeCall";
+import ReceiveCall from "../components/calls/ReceiveCall";
 
 function HomePages() {
   const [Page, setPage] = useState(<Loading />);
@@ -67,6 +68,20 @@ function HomePages() {
       setPage(<Home userName={userName} socket={socket} makeCall={makeCall} />);
     }
   }, [userName, socket]);
+
+  if (socket) {
+    socket.on("videoCallsToRes", (callingUser) => {
+      setPage(
+        <ReceiveCall
+          userName={userName}
+          chatUser={callingUser.userName}
+          socket={socket}
+          cSid={callingUser.sid}
+        />
+      );
+    });
+  }
+
   return Page;
 }
 

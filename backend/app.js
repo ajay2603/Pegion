@@ -19,7 +19,6 @@ app.use(
     credentials: true,
   })
 );
-
 app.use("/api/user-auth", userAuth);
 app.use("/api/fetch/user-details", userInfoFetch);
 app.use("/api/messages/chats", messages);

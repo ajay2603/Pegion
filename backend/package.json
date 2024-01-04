@@ -4,6 +4,7 @@
   "description": "backend for Pegion-chatting app",
   "main": "app.js",
   "scripts": {
+    "app": "npx nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jampana atchuta rama raju",

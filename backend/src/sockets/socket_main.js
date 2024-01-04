@@ -1,7 +1,10 @@
 const { authSessionLogin } = require("../functions/auth");
+const videoCalls = require("./calls");
 const socketMaps = new Map();
 
 let socketIo;
+
+const getSocketMaps = () => socketMaps;
 
 const handleClientConnection = async ({ socket, userName, logID }) => {
   try {
@@ -48,6 +51,8 @@ const setupSocketIO = (io) => {
         }
       }
     });
+
+    videoCalls(socket, io, getSocketMaps);
   });
 };
 

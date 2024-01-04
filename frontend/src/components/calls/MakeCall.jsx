@@ -5,7 +5,8 @@ import axios from "axios";
 function MakeCall(props) {
   const [userName, setUserName] = useState(props.userName);
   const [chatUser, setChatUser] = useState(props.chatUser);
-  const [socket, setSocket] = useState(props.chatUser);
+  const [socket, setSocket] = useState(props.socket);
+  const [callStat, setCallStat] = useState("Connecting...");
   const [chatUserDetails, setchatUserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -25,24 +26,30 @@ function MakeCall(props) {
   };
 
   const endCall = () => {
+    socket.emit("cancleCall", { userName: userName, chatUser: chatUser });
     window.location.href = "/home";
   };
 
   useEffect(() => {
+    socket.emit("videoCallTo", { userName: userName, chatUser: chatUser });
     getDetails();
   }, []);
 
-  useEffect(() => {
-    getDetails();
-    setUserName(props.userName);
-    setSocket(props.socket);
-    setChatUser(props.chatUser);
-  }, [props]);
+  socket.on("videoCallStat", (resp) => {
+    setCallStat(resp.callStat);
+  });
+
+  socket.on("callDeclined", () => {
+    setCallStat("Declined...");
+    setTimeout(() => {
+      window.location.href = "/home";
+    }, 1500);
+  });
 
   return (
     <div className=" h-screen w-screen flex justify-center items-center flex-col gap-[10vh] bg-[#eff6fc]">
       <div className="logsupTxt text-xl font-medium text-gray-700">
-        Calling...
+        {callStat}
       </div>
       <div className="min-h-[120px] min-w-[120px] w-[120px] h-[120px]  rounded-[50%] overflow-hidden border-4 border-solid border-[#b1b1b1]">
         <img
