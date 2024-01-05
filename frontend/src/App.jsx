@@ -4,8 +4,7 @@ import SignInUp from "./pages/SignInUp";
 import Open from "./pages/Open";
 import HomePages from "./pages/HomePage";
 
-import MakeCall from "../src/components/calls/MakeCall";
-import ReceiveCall from "../src/components/calls/ReceiveCall";
+import CallRoom from "./components/calls/CallRoom";
 
 function App() {
   return (
@@ -14,8 +13,7 @@ function App() {
         <Route path="/signin-signup" element={<SignInUp />} />
         <Route path="/home" element={<HomePages />} />
         <Route path="/" index element={<Open />} />
-        <Route path="/make-call" element={<MakeCall />} />
-        <Route path="/receive-call" element={<ReceiveCall />} />
+        <Route path="/call" element={<CallRoom />} />
       </Routes>
     </Router>
   );
